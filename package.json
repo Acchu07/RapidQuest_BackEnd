@@ -1,0 +1,23 @@
+{
+  "name": "rapidquest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch --env-file .env --experimental-strip-types src/index.ts",
+    "popDB": "node --watch --env-file .env --experimental-strip-types scripts/script.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.2.0"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongodb": "^6.18.0"
+  }
+}
