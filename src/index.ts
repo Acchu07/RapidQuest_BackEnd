@@ -1,19 +1,38 @@
 import express from 'express'
 import type { Request, Response } from 'express'
+import cors from 'cors'
+import {retrieveData, insertData} from './db/dbData.ts'
+import {connectDB} from './db/dbConnect.ts'
+
+const port = process.env.PORT ?? "Initial Value is null or undefined";
 
 const app = express()
 
+app.use(cors({
+    origin: "http://localhost:5173", // replace with online whitelist later
+}));
+app.use(express.json())
+
 app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World!')
+    res.status(200).json('Hello World!')
 })
 
-app.get('/api/messages/:id', (req: Request, res: Response) => {
-    // Retrieve all messages from db and send to front end but is that even a good idea? what if millions of messages?
-    res.send('on the given path')
+app.get('/api/messages/:id', async (req: Request, res: Response) => {
+    // ToDo Validation Middleware and Token Verification Middleware
+    const data = await retrieveData()
+    res.status(200).json(data)
 })
 
-app.listen(3000, () => {
-    console.log('Server started on port 3000')
+app.post('/api/messages', async (req: Request, res: Response) => {
+    // ToDO Validation Middleware
+    const data = req.body
+    await insertData(data)
+    res.status(200).json(data) // Not good
+})
+
+app.listen(port, async () => {
+    await connectDB()
+    console.log(`Server started on port ${port}`)
 })
 
 export default app
