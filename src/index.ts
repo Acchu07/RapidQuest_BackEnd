@@ -1,16 +1,19 @@
 import express from 'express'
 import type { Request, Response } from 'express'
 import cors from 'cors'
-import {retrieveData, insertData} from './db/dbData.ts'
-import {connectDB} from './db/dbConnect.ts'
+import {retrieveData, insertData} from './db/dbData.js'
+import {connectDB} from './db/dbConnect.js'
 
 const port = process.env.PORT ?? "Initial Value is null or undefined";
 
 const app = express()
+app.use(express.static('public'))
 
-app.use(cors({
-    origin: "http://localhost:5173", // replace with online whitelist later
-}));
+
+// Need some sort of process for url unification current pipeline has a lot of rep look up online on it
+// app.use(cors({
+//     origin: "http://localhost:5173", // replace with online whitelist later
+// }));
 app.use(express.json())
 
 app.get('/', (req: Request, res: Response) => {

@@ -1,13 +1,14 @@
 {
-    "compilerOptions": {
-        "allowImportingTsExtensions": true,
-        "noEmit": true,
-      "target": "ESNext",
-      "module": "ESNext",
-      "moduleResolution": "node",
-      "strict": true,
-      "esModuleInterop": true,
-      "forceConsistentCasingInFileNames": true
-    }
-  }
-  
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "allowImportingTsExtensions": false,
+    "noEmit": false,
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+  },
+  "include": ["src/**/*"]
+}
